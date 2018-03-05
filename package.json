@@ -1,0 +1,25 @@
+{
+  "name": "yurencloud",
+  "version": "1.0.0",
+  "description": "new yurencloud project",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "yurencloud",
+    "yuren",
+    "yu",
+    "mackwang",
+    "yurencloud.com"
+  ],
+  "author": {
+    "name": "mackwang",
+    "email": "641212003@qq.com",
+    "url": "http://www.yurencloud.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "mockjs": "^1.0.1-beta3",
+    "requirejs": "^2.3.5"
+  }
+}
