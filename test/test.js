@@ -19,4 +19,4 @@ require(['mock','jquery'], function (Mock) {
             "t sk":1
         });
     })
-})
+});
