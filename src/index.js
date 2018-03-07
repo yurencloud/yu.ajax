@@ -39,6 +39,12 @@ var _default = {
     onSuccess: noop,
 
     /*
+    * 请求失败的回调函数
+    * @type Function
+    * */
+    onFailure: noop,
+
+    /*
     * 是否异步
     * @type Boolean
     * */
@@ -170,6 +176,7 @@ var ajax = function (options) {
             }
 
         } else {
+            options.onFailure(xhr);
             throw new Error('Ajax error！error code：' + xhr.status + '，error message：' + xhr.statusText);
         }
     }

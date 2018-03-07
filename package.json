@@ -1,6 +1,6 @@
 {
-  "name": "ajax",
-  "version": "1.0.1",
+  "name": "yu.ajax",
+  "version": "1.0.3",
   "description": "ajax封装 ajax util",
   "main": "src/index.js",
   "scripts": {},
