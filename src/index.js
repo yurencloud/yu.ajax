@@ -48,7 +48,19 @@ var _default = {
     * 预计返回的数据格式
     * @type String
     * */
-    type: 'json'
+    type: 'json',
+
+    /*
+    * 发送数据的格式
+    * @type String
+    * */
+    contentType: 'application/x-www-form-urlencoded',
+
+    /*
+    * 发送头部键值对
+    * @type Object
+    * */
+    header: {}
 
 };
 
@@ -100,13 +112,14 @@ var params = function (data) {
  * */
 var ajax = function (options) {
     options = object.assign({}, _default, options);
-    var method =  options.method.toUpperCase();
+    var method = options.method.toUpperCase();
+    var header = options.header;
     var xhr = createXHR();
     //通过使用JS随机字符串解决IE浏览器第二次默认获取缓存的问题
     //options.url = options.url + '?rand=' + Math.random();
 
     //若是GET请求，则将数据加到url后面
-    if (method === 'GET' && JSON.stringify(options.data) !== '{}') {
+    if (method === 'GET' && !object.isEmpty(options.data)) {
         options.data = params(options.data);
         options.url += options.url.indexOf('?') === -1 ? '?' + options.data : '&' + options.data;
     }
@@ -120,10 +133,19 @@ var ajax = function (options) {
     }
 
     xhr.open(options.method, options.url, options.async);
+
+    if (!object.isEmpty(header)) {
+        for (var key in header) {
+            if (header.hasOwnProperty(key)) {
+                xhr.setRequestHeader(key, header[key]);
+            }
+        }
+    }
+
     if (method === 'GET') {
         xhr.send(null);
     } else {
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('Content-Type', options.dataType);
         xhr.send(options.data);
     }
 
@@ -132,24 +154,26 @@ var ajax = function (options) {
     }
 
     function callback() {
+
         if (xhr.status === 200) {
-            if(!xhr.responseText){
+            if (!xhr.responseText) {
                 options.onSuccess({});
                 return;
             }
 
-            if(options.type === 'json'){
+            if (options.type === 'json') {
                 options.onSuccess(JSON.parse(xhr.responseText));
             }
 
-            if(options.type === 'text'){
+            if (options.type === 'text') {
                 options.onSuccess(xhr.responseText);
             }
 
         } else {
-            alert('Ajax error！error code：' + xhr.status + '，error message：' + xhr.statusText);
+            throw new Error('Ajax error！error code：' + xhr.status + '，error message：' + xhr.statusText);
         }
     }
+
 };
 
 module.exports = ajax;

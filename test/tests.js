@@ -40,6 +40,8 @@ Mock.mock('http://mock.com/user', 'delete', {
     age: 28
 });
 
+Mock.mock('http://mock.com/get', 'get', 30);
+
 describe('发送请求测试', function () {
     it('get请求 age 应为 23', function (done) {
         ajax({
@@ -104,4 +106,13 @@ ajax({
     method: 'put',
     url: 'http://mock.com/user/param',
     data: {name: 'cindy', age: 27}
+});
+
+ajax({
+    method: 'get',
+    url: 'http://mock.com/get',
+    type: 'text',
+    onSuccess: function (data) {
+        console.log(data);
+    }
 });

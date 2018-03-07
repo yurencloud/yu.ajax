@@ -1,10 +1,12 @@
 {
-  "name": "yurencloud",
-  "version": "1.0.0",
-  "description": "new yurencloud project",
-  "main": "index.js",
+  "name": "ajax",
+  "version": "1.0.1",
+  "description": "ajax封装 ajax util",
+  "main": "src/index.js",
   "scripts": {},
   "keywords": [
+    "yu.ajax",
+    "ajax",
     "yurencloud",
     "yuren",
     "yu",
@@ -18,10 +20,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "yu.object": "^1.0.1",
-    "mockjs": "^1.0.1-beta3"
+    "yu.object": "^1.0.2"
   },
   "devDependencies": {
+    "mockjs": "^1.0.1-beta3",
     "chai": "^4.1.2",
     "webpack": "^4.1.0"
   }
